@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.domain.SampleDTO;
 import com.project.domain.SampleDTOList;
@@ -76,5 +77,12 @@ public class SampleController {
 		return "/sample/ex04";
 	}
 	
+	@GetMapping("/ex04r")
+	public String ex04_1(RedirectAttributes rttr) {
+		rttr.addAttribute("name", "BBB");
+		rttr.addAttribute("age", "22");
+		rttr.addAttribute("page", 2);
+		return "redirect:/sample/ex04";
+	}
 	
 }
