@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -99,5 +102,17 @@ public class SampleController {
 		dto.setName("홍길동");
 		return dto;
 	}
+	
+	@GetMapping("/ex07")
+	public ResponseEntity<String> ex07() {
+		log.info("ex07...");
+		String msg = "{\"name\": \"홍길동\"}";
+		
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "application/json;charset=UTF-8");
+		
+		return new ResponseEntity<>(msg, header, HttpStatus.OK); 
+	}
+	
 	
 }
