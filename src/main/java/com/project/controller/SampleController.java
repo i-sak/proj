@@ -85,4 +85,9 @@ public class SampleController {
 		return "redirect:/sample/ex04";
 	}
 	
+	@GetMapping("/ex05")
+	public void ex05() {
+		log.info("ex05...");
+	}
+	
 }
