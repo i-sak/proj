@@ -114,5 +114,10 @@ public class SampleController {
 		return new ResponseEntity<>(msg, header, HttpStatus.OK); 
 	}
 	
+	@GetMapping("/exUpload")
+	public void exUpload() {
+		log.info("/exUpload...");
+	}
+	
 	
 }
