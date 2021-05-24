@@ -10,14 +10,17 @@
 
 <form method="POST" enctype="multipart/form-data" action="/sample/exUploadPost">
 	<div>
+		<input type="file" name="files">
 	</div>
-		<input type="file" name="files">
 	 <div>
+	 	<input type="file" name="files">
 	 </div>
-		<input type="file" name="files">
 	 <div>
+		<input type="file" name="files"> 
 	 </div>
+	 <div>
 		<input type="file" name="files">
+	</div>
 	 <div>
 		<input type="submit">
 	</div>
