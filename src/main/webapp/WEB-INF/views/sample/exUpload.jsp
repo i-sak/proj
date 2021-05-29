@@ -21,6 +21,9 @@
 	 <div>
 		<input type="file" name="files">
 	</div>
+	<div>
+		<input type="file" name="files">
+	</div>
 	 <div>
 		<input type="submit">
 	</div>

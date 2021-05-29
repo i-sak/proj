@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -120,13 +123,47 @@ public class SampleController {
 		log.info("/exUpload...");
 	}
 	
-	@GetMapping("/exUploadPost")
-	public void exUploadPost(ArrayList<MultipartFile> files) {
+	@PostMapping("/exUploadPost")
+	public String exUploadPost(MultipartFile[] files) { // ArrayList<MultipartFile>
+		String uploadFolder = "C:\\ftmp\\storage";
+		
+		for(MultipartFile file : files) {
+			log.info("---------------------");
+			log.info("name : " + file.getOriginalFilename());
+			log.info("size : " + file.getSize());
+			
+			File saveFile = new File(uploadFolder, file.getOriginalFilename());
+			
+			try {
+				file.transferTo(saveFile);
+			} catch (IllegalStateException e) {
+				log.info(e.getMessage());
+			} catch (IOException e) {
+				log.info(e.getMessage());
+			}
+		}
+
+		return "forward:/sample/exUpload"; // "redirect:/sample/exUpload";
+		
+		
+		/* 이것도 가능한지 점검해봐야 할 듯
 		files.forEach(file -> {
 			log.info("---------------------");
 			log.info("name : " + file.getOriginalFilename());
 			log.info("size : " + file.getSize());
+			
+			File saveFile = new File("C:\\ftmp", file.getName());
+			
+			try {
+				file.transferTo(saveFile);
+			} catch (IllegalStateException e) {
+				log.info(e.getMessage());
+			} catch (IOException e) {
+				log.info(e.getMessage());
+			}
+			log.debug("------------------------------------");
 		});
+		*/
 	}
 	
 	
